@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>iStalk</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="icon" type="image/svg" href="/static/images/logo.svg">
+        <link rel="stylesheet" href="/static/style.css" type="text/css">
+    </head>
+    <body>
+        <borderthingie>
+            <notch></notch>
+        </borderthingie>
+        <div style="display: block; position: absolute; height: 94vh; width: calc(100vw - 6vh); top: 3vh; left: 3vh; padding: 0px; margin: 0px; background-color: white;">
+            <h1 style="font-family: font; position: absolute; top: 6vh; left: 50%; transform: translate(-50%, -50%); font-size: 10vh;">iStalk</h1>
+            <colors style="left: 25%;background-image: url(/static/images/space.jpg);"></colors>
+            <colors style="left: 50%;background-image: url(/static/images/aluminum.jpg);"></colors>
+            <colors style="left: 75%;background-image: url(/static/images/rose.jpg);"></colors>
+            <stalkdesc style="bottom: 12vh;font-size: 4vh;">Now At Your Fingertips</stalkdesc>
+            <stalkdesc style="bottom: 3.5vh; font-size: 6vh;">The Most Powerful Stalking Engine</stalkdesc>
+            <stalkdesc style="bottom: 1vh; font-size: 3vh;">From $8499</stalkdesc>
+        </div>
+        <div style="display: block; position: absolute; height: 30vh; width: calc(100vw - 6vh); top: 97vh; left: 3vh; padding: 0px; margin: 0px; background-color: rgb(250, 250, 250);">
+            <h1 style="font-family: font; position: absolute; top: 6%;left: 50%; transform: translateX(-50%); font-size: 5vh;">iStalk Search</h1>
+            <div class="text-input">
+                <input type="text" placeholder="Stalk the subject..." id="momname" required>
+                <label for="momname" class="material-icons-outlined">search</label>
+            </div>
+        </div>
+        <script>
+            document.getElementById("momname").addEventListener("keypress", function(e){
+                if(e.key == "Enter"){
+                    location = `/results?q=${document.getElementById("momname").value}`
+                }
+            })
+        </script>
+    </body>
+</html>

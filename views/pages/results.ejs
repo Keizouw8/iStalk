@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iStalk - Results</title>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="icon" type="image/svg" href="/static/images/logo.svg">
+    <script src="/socket.io/socket.io.min.js"></script>
+</head>
+<body>
+    <borderthingie>
+        <notch></notch>
+    </borderthingie>
+    <div style="display: block; position: absolute; height: 94vh; width: calc(100vw - 6vh); top: 3vh; left: 3vh; padding:0; margin: 0; background-color: white;">
+        <a href="https://www.google.com" style="color: black;"><i class='bx bxl-google' style="font-size:5vh; padding: 1vh;"><span style="font-family:font;margin:0;padding:0;font-size: 3vh;position:absolute;transform:translate(0%,35%);">Powered By Google</span></i></a>
+        <a href="/">
+            <h1 style="padding:0;margin:0;font-size: 3vh;position:absolute;left:50%;top:6vh;transform:translate(-50%,0%);font-family:font;">iStalk Pro Max Ultra</h1>
+            <h1 style="padding:0;margin:0;font-size: 7vh;position:absolute;left:50%;top:10vh;transform:translate(-50%,0%);font-family:font;">So. Many. Results.</h1>
+            <h1 style="padding:0;margin:0;font-size: 2vh;position:absolute;left:50%;top:20vh;transform:translate(-50%,0%);font-family:font;">From our Industry-Leading 0.5-Core ML Engine ($2000), We Proudly Present:</h1>
+        </a>
+        <span style="display:none;" id="asdf"><%= q %></span>
+        <div style="position:absolute;padding:0;margin:0;background: #F5F5F5;top:25vh;width:100%;height:69vh;">
+            <table style="color:#3c3c3c;">
+                <tr>
+                    <td><i class='bx bxl-facebook-circle'></i></td>
+                    <td id="facebook.com">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-snapchat'></i></td>
+                    <td id="snapchat.com">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-instagram'></i></td>
+                    <td id="instagram.com">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-linkedin-square'></i></td>
+                    <td id="linkedin.com">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-tiktok'></i></td>
+                    <td id="tiktok.com">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-wikipedia'></i></td>
+                    <td id="wikipedia.org">Waiting on API...</td>
+                </tr>
+                <tr>
+                    <td><i class='bx bxl-twitter'></i></td>
+                    <td id="twitter.com">Waiting on API...</td>
+                </tr>
+            </table>
+            <h1 style="position: absolute; font-family: font; bottom: 60vh; right: 59vh;transform:translate(100%,50%); font-size:4vh;"><%= q %></h1>
+            <img id="img" style="position:absolute;bottom:4vh;right:4vh;object-fit: cover;object-position: center;height:55vh;width:55vh;">
+        </div>
+    </div>
+    <div style="display: block; position: absolute; height: 50vh; width: calc(100vw - 6vh); top: 97vh; left: 3vh; padding: 0px; margin: 0px; background-color: white;">
+        <center><h1 style="font-family: font; font-size: 2.5vh;">Top 5 Results</h1></center>
+        <hr style="width: 80%">
+        <div class="tfd" style="left:16.66%;" id="3">
+            <img src="/static/images/space.jpg" class="circle">
+            <span>#4</span>
+            <h1>Waiting on API...</h1>
+        </div>
+        <div class="tfd" style="left:33.33%;" id="1">
+            <img src="/static/images/aluminum.jpg" class="circle">
+            <span>#2</span>
+            <h1>Waiting on API...</h1>
+        </div>
+        <div class="tfd" style="left:50%;" id="0">
+            <img src="/static/images/rose.jpg" class="circle">
+            <span>#1</span>
+            <h1>Waiting on API...</h1>
+        </div>
+        <div class="tfd" style="left:66.66%;" id="2">
+            <img src="/static/images/aluminum.jpg" class="circle">
+            <span>#3</span>
+            <h1>Waiting on API...</h1>
+        </div>
+        <div class="tfd" style="left:83.33%;" id="4">
+            <img src="/static/images/space.jpg" class="circle">
+            <span>#5</span>
+            <h1>Waiting on API...</h1>
+        </div>
+        <hr style="width: 80%; position: absolute; bottom: 6vh; left: 50%; transform: translateX(-50%);">
+    </div>
+    <script defer>
+        const socket = io();
+        function sendmessage(name){
+            console.log("going!")
+            socket.emit("stalkperson", name, function(results){
+                if(!results[0]){
+                    alert("There has been an issue: "+results[1]);
+                    return;
+                }
+                document.querySelectorAll(".tfd").forEach(function(tfd){
+                    tfd.addEventListener("click", function(){
+                        location = results[3][parseInt(tfd.id)]["link"];
+                    })
+                    tfd.querySelector("h1").innerText = results[3][parseInt(tfd.id)]["title"];
+                })
+                document.getElementById("img").setAttribute("src", results[2]);
+                Object.keys(results[1]).forEach(function (index){
+                    if(results[1][index].length > 0){
+                        var list = results[1][index];
+                        list.forEach(function (info){
+                            var a = document.createElement("a");
+                            a.innerText = info.title;
+                            a.href = info.link;
+                            a.style["color"] = "#0387df";
+                            if(document.getElementById(index).innerHTML == "Waiting on API..."){
+                                document.getElementById(index).innerHTML = "";
+                            }else{
+                                document.getElementById(index).innerHTML += ", ";
+                            }
+                            document.getElementById(index).appendChild(a);
+                        });
+                    }else{
+                        document.getElementById(index).innerText = "No results found."
+                    }
+                });
+            });
+        }
+        sendmessage(document.getElementById('asdf').innerText);
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+@font-face{
+    font-family: font;
+    src: url(/static/fonts/font.ttf);
+}
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+::-webkit-scrollbar{
+    display : none;
+}
+body{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    background-color: rgb(100, 100, 100);
+}
+stalkdesc{
+    font-family: font;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+}
+colors{
+    position: absolute;
+    top: 22vh;
+    transform: translateX(-50%);
+    height: 45vh;
+    width: 45vh;
+    -webkit-mask-image: url(/static/images/logo.svg);
+    mask-image: url(/static/images/logo.svg);
+    -webkit-mask-mode: alpha;
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    mask-mode: alpha;
+    mask-size: contain;
+    mask-position: center;
+    background-size: contain;
+    background-position: center;
+}
+notch{
+    position: fixed;
+    background-color: black;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    height: 8vh;
+    width: 22vw;
+    border-radius: 3vh;
+    padding: 0px;
+    margin: 0px;
+}
+borderthingie{
+    pointer-events: none;
+    z-index: 99999999;
+    position: fixed;
+    border: 3vh solid black;
+    border-radius: 3vh;
+    top: 0px;
+    left: 0px;
+    height: 94vh;
+    width: calc(100vw - 6vh);
+    padding: 0px;
+    margin: 0px;
+}
+.text-input{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+.text-input label{
+    left:0;
+    position:absolute;
+    top:50%;
+    transform:translate(1vh,-50%);
+    font-size:5vh;
+    color:rgb(143,143,143);
+    transition:0.5s;
+}
+input{
+    outline:none;
+    margin: 0px;
+    padding: 2vh;
+    padding-left:7vh;
+    font-family:font;
+    font-size: 3vh;
+    background:rgba(0,0,0,0);
+    border: 0.1vh solid #bbb;
+    width:50vw;
+}
+input::placeholder{
+    color: rgb(143,143,143);
+}
+input:valid ~ label{
+    color: black;
+}
+tr td i.bx{
+    font-size: 7.5vh;
+}
+td{
+    padding:1vh;
+    font-family:font;
+    font-size:3vh;
+}
+.circle{
+    cursor: pointer;
+    border-radius:50%;
+    width:25vh;
+    height:25vh;
+    object-fit:cover;
+    object-position:center;
+}
+.tfd{
+    max-width:16%;
+    text-align: center;
+    padding:0;
+    margin:0;
+    display:block;
+    transform:translate(-50%,-50%);
+    top:50%;
+    position:absolute;
+    cursor: pointer;
+}
+.tfd h1{
+    cursor: pointer;
+    padding:0;
+    margin:0;
+    font-family:font;
+    font-size:3vh;
+    max-width:100%;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+.tfd span{
+    cursor: pointer;
+    position:absolute;
+    font-family:font;
+    font-size:10vh;
+    color:white;
+    top:12vh;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
